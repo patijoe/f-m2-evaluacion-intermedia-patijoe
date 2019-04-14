@@ -5,8 +5,10 @@ const field = document.querySelector('#field');
 const btn = document.querySelector('.btn');
 const text = document.querySelector('.text');
 const counter = document.querySelector('.counter');
-const numRandom = getRandomInt(100);
+let numRandom = getRandomInt(100);
 console.log(numRandom);
+const win = document.querySelector('HTML');
+const btnReset = document.querySelector('.btnReset');
 let acc = 0;
 
 // Función número random
@@ -48,10 +50,26 @@ function compare () {
 
 }}
 
+// Función que permite validar número presionando enter.
 function active () {
+    console.log(event);
+   if (event.keyCode ===13) {
+       compare();
+   }
+}
 
- }
+//Función reset
+function reset () {
+    acc=0;
+    insert (counter, acc);
+    field.value = ``;
+    insert (text, 'Escibe un número de prueba');
+    let numRandom = getRandomInt(100);
+    console.log(numRandom);
 
+}
 
 // Función listener
 btn.addEventListener(`click`, compare);
+win.addEventListener(`keypress`, active);
+btnReset.addEventListener(`click`, reset);
